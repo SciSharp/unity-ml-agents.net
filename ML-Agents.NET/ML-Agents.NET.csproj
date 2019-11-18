@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Tensorflow.Unity3D</RootNamespace>
+    <PackageId>Unity-ML-Agents.NET</PackageId>
+    <Authors>Haiping Chen</Authors>
+    <Product>.NET for Unity ML Agents</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\TensorFlow.NET\src\TensorFlowNET.Core\TensorFlow.Binding.csproj" />
+  </ItemGroup>
+
+</Project>
