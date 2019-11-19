@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using static Tensorflow.Binding;
 using System.Linq;
+using Tensorflow.Unity3D.Trainers;
 
-namespace Tensorflow.Unity3D.Trainers
+namespace UnitTests
 {
     public static class mock_brain
     {

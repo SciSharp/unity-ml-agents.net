@@ -9,22 +9,25 @@ namespace Tensorflow.Unity3D.Trainers
 {
     public class PPOModel : LearningModel
     {
+        public Tensor learning_rate;
         Tensor prev_action;
-        Tensor all_log_probs;
-        Tensor action_masks;
-        Tensor output;
+        public Tensor all_log_probs;
+        public Tensor action_masks;
+        public Tensor output;
         Tensor normalized_logits;
         Tensor action_holder;
         Tensor action_oh;
         Tensor selected_actions;
         Tensor all_old_log_probs;
         Tensor old_normalized_logits;
-        Tensor entropy;
+        public Tensor entropy;
         Tensor log_probs;
         Tensor old_log_probs;
         Tensor advantage;
         Tensor value_loss;
         Tensor policy_loss;
+        Tensor abs_policy_loss;
+        Tensor loss;
 
         /// <summary>
         /// Takes a Unity environment and model-specific hyper-parameters and returns the
@@ -74,7 +77,7 @@ namespace Tensorflow.Unity3D.Trainers
             {
                 create_dc_actor_critic(h_size, num_layers, vis_encode_type);
             }
-            var learning_rate = create_learning_rate(lr_schedule, lr, global_step, max_step);
+            learning_rate = create_learning_rate(lr_schedule, lr, global_step, max_step);
             create_losses(
                 log_probs,
                 old_log_probs,
@@ -120,12 +123,17 @@ namespace Tensorflow.Unity3D.Trainers
             }
             value_loss = tf.reduce_mean(value_losses.ToArray());
             var r_theta = tf.exp(probs - old_probs);
-            var p_opt_a = r_theta * advantage;
             var clip = tf.clip_by_value(r_theta, 1.0f - decay_epsilon, 1.0f + decay_epsilon);
-            var p_opt_b = clip * advantage;
-            var min = tf.minimum(p_opt_a, p_opt_b);
+            var min = tf.minimum(r_theta * advantage, clip * advantage);
             var partitions = tf.dynamic_partition(min, mask, 2);
             policy_loss = -tf.reduce_mean(partitions[1]);
+            // For cleaner stats reporting
+            abs_policy_loss = tf.abs(policy_loss);
+
+            loss = policy_loss
+                + 0.5 * value_loss
+                - decay_beta
+                * tf.reduce_mean(tf.dynamic_partition(entropy, mask, 2)[1]);
         }
 
         /// <summary>
@@ -157,7 +165,7 @@ namespace Tensorflow.Unity3D.Trainers
 
             all_log_probs = tf.concat(policy_branches, axis: 1, name: "action_probs");
             action_masks = tf.placeholder(tf.float32, shape: (-1, sum(act_size)), name: "action_masks");
-            var (output, _, normalized_logits) = create_discrete_action_masking_layer(all_log_probs, action_masks, act_size);
+            (output, _, normalized_logits) = create_discrete_action_masking_layer(all_log_probs, action_masks, act_size);
             output = tf.identity(output);
             normalized_logits = tf.identity(normalized_logits, name: "action");
             create_value_heads(stream_names, hidden);

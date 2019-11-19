@@ -17,8 +17,8 @@ namespace Tensorflow.Unity3D.Trainers
         protected RefVariable global_step;
         protected Tensor steps_to_increment;
         protected Tensor increment_step;
-        protected Tensor batch_size;
-        protected Tensor sequence_length;
+        public Tensor batch_size;
+        public Tensor sequence_length;
         protected Tensor mask_input;
         protected Tensor mask;
 
@@ -29,12 +29,12 @@ namespace Tensorflow.Unity3D.Trainers
         protected int vec_obs_size;
         protected int vis_obs_size;
 
-        protected Tensor vector_in;
+        public Tensor vector_in;
 
         float EPSILON = 1e-7f;
 
         protected Dictionary<string, Tensor> value_heads = new Dictionary<string, Tensor>();
-        protected Tensor value;
+        public Tensor value;
         protected List<string> stream_names;
 
         public LearningModel(int? m_size = null,

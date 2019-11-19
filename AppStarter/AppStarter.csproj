@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ML-Agents.NET\ML-Agents.NET.csproj" />
+    <ProjectReference Include="..\UnitTest\UnitTests.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using System;
 using Tensorflow.Unity3D;
+using UnitTests;
 
 namespace AppStarter
 {
@@ -7,8 +8,9 @@ namespace AppStarter
     {
         static void Main(string[] args)
         {
-            var demo = new DemoForPPO();
-            demo.Run();
+            var tests = new test_ppo();
+            tests.test_ppo_model_dc_vector();
+            Console.ReadLine();
         }
     }
 }

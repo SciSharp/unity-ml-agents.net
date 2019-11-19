@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML-Agents.NET", "ML-Agents.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TensorFlow.Binding", "..\TensorFlow.NET\src\TensorFlowNET.Core\TensorFlow.Binding.csproj", "{AAC99A56-1155-4C12-B6E6-EA374DF63137}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest\UnitTest.csproj", "{DAB3606F-1F66-4B04-B628-14F6418A10B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTest\UnitTests.csproj", "{DAB3606F-1F66-4B04-B628-14F6418A10B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
