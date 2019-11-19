@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SciSharp.TensorFlow.Redist" Version="1.15.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ML-Agents.NET\ML-Agents.NET.csproj" />
     <ProjectReference Include="..\UnitTest\UnitTests.csproj" />
   </ItemGroup>
 
