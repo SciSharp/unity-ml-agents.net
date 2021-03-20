@@ -8,10 +8,14 @@
     <Product>.NET for Unity ML Agents</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.0.1</Version>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TensorFlow.NET\src\TensorFlowNET.Core\TensorFlow.Binding.csproj" />
+    <PackageReference Include="Google.Protobuf" Version="3.15.6" />
+    <PackageReference Include="NumSharp" Version="0.20.5" />
+    <PackageReference Include="SciSharp.TensorFlow.Redist" Version="1.15.0" />
+    <PackageReference Include="TensorFlow.NET" Version="0.14.0" />
   </ItemGroup>
 
 </Project>
