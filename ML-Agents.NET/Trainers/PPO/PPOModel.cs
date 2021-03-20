@@ -28,6 +28,7 @@ namespace Tensorflow.Unity3D.Trainers
         Tensor policy_loss;
         Tensor abs_policy_loss;
         Tensor loss;
+        private Tuple<Tensor, RefVariable>[] grads = null;
 
         /// <summary>
         /// Takes a Unity environment and model-specific hyper-parameters and returns the
@@ -67,11 +68,16 @@ namespace Tensorflow.Unity3D.Trainers
                 seed: seed,
                 stream_names: stream_names)
         {
+            // optimizer: Optional[tf.train.AdamOptimizer] = null;
+            // update_batch: Optional[tf.Operation] = null;
+
             if (num_layers < 1)
                 num_layers = 1;
             if (brain.vector_action_space_type == "continuous")
             {
                 throw new NotImplementedException("brain.vector_action_space_type");
+                // create_cc_actor_critic(h_size, num_layers, vis_encode_type);
+                // entropy = tf.ones_like(tf.reshape(value, [-1])) * entropy;
             }
             else
             {
@@ -223,6 +229,12 @@ namespace Tensorflow.Unity3D.Trainers
                 axis: 1,
                 keepdims: true
             );
+        }
+
+        private void create_ppo_optimizer() {
+            var optimizer = tf.train.AdamOptimizer(learning_rate: learning_rate);
+            grads = optimizer.compute_gradients(loss);
+            var update_batch = optimizer.minimize(loss);
         }
     }
 }
