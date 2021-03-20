@@ -13,8 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.15.6" />
-    <PackageReference Include="NumSharp" Version="0.20.5" />
-    <PackageReference Include="SciSharp.TensorFlow.Redist" Version="1.15.0" />
+    <PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.4.1" />
     <PackageReference Include="TensorFlow.NET" Version="0.14.0" />
   </ItemGroup>
 
