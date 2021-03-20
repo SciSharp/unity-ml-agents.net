@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Tensorflow.Unity3D</RootNamespace>
     <PackageId>Unity-ML-Agents.NET</PackageId>
     <Authors>Haiping Chen</Authors>
